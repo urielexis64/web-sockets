@@ -20,12 +20,14 @@ btnSend.addEventListener("click", () => {
 	const message = txtMessage.value;
 	const payload = {
 		message,
-		id: "xd",
+		id: socket.id,
 		date: new Date().getTime(),
 	};
-	socket.emit("send-message", payload);
+	socket.emit("send-message", payload, (id) => {
+		console.log("server", id);
+	});
 });
 
-socket.on("data", (data) => {
+socket.on("send-message", (data) => {
 	console.log(data);
 });
