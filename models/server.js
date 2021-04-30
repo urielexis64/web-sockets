@@ -36,6 +36,10 @@ class Server {
 	sockets() {
 		this.io.on("connection", (socket) => {
 			console.log("Client connected");
+
+			socket.on("send-message", (payload) => {
+				console.log(payload);
+			});
 		});
 	}
 
